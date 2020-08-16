@@ -24,12 +24,10 @@
 </table>
 
 
-<% if current_user == task.user %>
-<%= link_to(edit_task_path(@task)) do%>
-<span class='btn btn-light'>このタスクを編集する</span><% end %>
+<% if current_user == @task.user %>
+<%= link_to "このタスクを編集する", edit_task_path(@task), class:'btn btn-light'%>
 <% end %>
 
-<% if current_user == task.user %>
-<%= link_to(@task, method: :delete, data: { confirm: '本当に削除してよろしいですか？' }) do%>
-<span class='btn btn-danger' >このタスクを削除する</span><% end %>
+<% if current_user == @task.user %>
+<%= link_to "このタスクを削除する", @task, method: :delete, data: { confirm: '本当に削除してよろしいですか？' }, class:'btn btn-danger'%>
 <% end %>

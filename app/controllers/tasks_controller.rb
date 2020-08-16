@@ -1,11 +1,12 @@
 class TasksController < ApplicationController
-  before_action :correct_user, only: [:show, :edit, :update, :destroy]
   before_action :require_user_logged_in
+  before_action :correct_user, only: [:show, :edit, :update, :destroy]
+  
   
   def index
-    if logged_in?
-      @tasks = current_user.tasks.order(id: :desc).page(params[:page]).par(10)
-    end
+    #if logged_in?
+      @tasks = current_user.tasks.page(params[:page]).per(10)
+    #end
   end
   
   def show
@@ -22,7 +23,7 @@ class TasksController < ApplicationController
       redirect_to @task
     else
      # @tasks = current_user.tasks.order(id: :desc).page(params[:page])
-      flash.now[:danger] = 'メッセージの投稿に失敗しました。'
+      flash.now[:danger] = 'タスクの登録に失敗しました。'
       render 'new'
     end
   end
