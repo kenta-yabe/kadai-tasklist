@@ -24,10 +24,12 @@
 </table>
 
 
-
+<% if current_user == task.user %>
 <%= link_to(edit_task_path(@task)) do%>
-<span class='btn btn-light'><i class="fas fa-edit"></i> このタスクを編集する</span><% end %>
+<span class='btn btn-light'>このタスクを編集する</span><% end %>
+<% end %>
 
-
+<% if current_user == task.user %>
 <%= link_to(@task, method: :delete, data: { confirm: '本当に削除してよろしいですか？' }) do%>
-<span class='btn btn-danger' ><i class="fas fa-trash-alt"></i> このタスクを削除する</span><% end %>
+<span class='btn btn-danger' >このタスクを削除する</span><% end %>
+<% end %>
